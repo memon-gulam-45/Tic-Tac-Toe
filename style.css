@@ -29,7 +29,7 @@ body {
   align-items: center;
 }
 
-#main-container {
+.main-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -38,15 +38,14 @@ body {
 }
 
 .heading {
-  font-size: 12vmin;
-  margin-bottom: 3vh;
+  font-size: 5rem;
+  margin: 3rem;
 }
 
 #name-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
 }
 
 .players {
@@ -59,26 +58,37 @@ body {
   background-color: rgba(222, 217, 217, 0.171);
   border-radius: 2rem;
   box-shadow: 0 0 20px black;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  margin-bottom: 5rem;
 }
 
 .name {
-  font-size: 6vmin;
+  font-size: 2.5rem;
 }
 
-input {
-  width: 50vmin;
+.players input {
+  width: 40vw;
   background: transparent;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-  font-size: 3vmin;
+  font-size: 1.2rem;
   border: none;
-  border-radius: 1vh;
+  border-radius: 1rem;
   padding: 20px;
 }
-input::placeholder {
+.players input::placeholder {
   color: lightgray;
 }
+.players button {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
 
+#turn-indicator {
+  font-size: 1.3rem;
+  position: relative;
+  bottom: 50px;
+  color: white;
+}
 .container {
   height: 60vh;
   display: flex;
@@ -167,7 +177,7 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
-.msg {
+#msg {
   height: 80vh;
   width: 60vw;
   background-color: rgba(222, 217, 217, 0.171);
@@ -186,49 +196,108 @@ button:hover {
 .winner-text {
   font-size: 2rem;
   font-weight: bold;
-  background-color: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientMove 3s infinite linear;
-}
-@keyframes gradientMove {
-  0% {
-    background-position: 0%;
-  }
-  100% {
-    background-position: 200%;
-  }
+  color: white;
 }
 
 @media (max-width: 480px) {
   .heading {
-    font-size: 13vmin;
-    margin-top: 8vh;
+    font-size: 10vmin;
+    margin-top: 6vh;
   }
-  .container {
+
+  .players {
+    width: 80vw;
+    height: 60vh;
+    padding: 2rem 1rem;
+  }
+
+  .players input {
+    width: 60vw;
+    font-size: 1.8rem;
+    padding: 12px;
+  }
+
+  .game {
+    height: 70vmin;
+    width: 70vmin;
+    gap: 1vmin;
+  }
+
+  .box {
+    height: 20vmin;
+    width: 20vmin;
+    font-size: 9vmin;
+  }
+
+  .btn {
+    font-size: 4.5vmin;
+    padding: 0.8rem 1.2rem;
+  }
+
+  #msg {
+    width: 80vw;
+    height: 70vh;
+  }
+
+  .msg-container p {
+    font-size: 6vmin;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 900px) {
+  .heading {
+    font-size: 8vmin;
+    margin-top: 5vh;
+  }
+
+  .players {
+    width: 60vw;
     height: 60vh;
   }
+
+  .players input {
+    width: 45vw;
+    font-size: 1.4rem;
+  }
+
   .game {
     height: 60vmin;
     width: 60vmin;
   }
+
   .box {
     height: 18vmin;
     width: 18vmin;
+    font-size: 8vmin;
   }
+
   .btn {
-    font-size: 5vmin;
+    font-size: 3vmin;
   }
-  #reset-btn {
-    margin-top: 3vh;
-    margin-bottom: 10vh;
+
+  #msg {
+    width: 70vw;
+    height: 70vh;
   }
-  .msg-container p {
-    font-size: 5vmin;
-    margin: 3rem;
+}
+
+/* ✅ For large screens / desktops (min-width: 901px) */
+@media (min-width: 901px) {
+  .heading {
+    font-size: 5rem;
   }
-  .msg-container {
-    height: 100vh;
+
+  .players {
+    width: 35vw;
+    height: 70vh;
+  }
+
+  .players input {
+    width: 50vmin;
+  }
+
+  .game {
+    width: 60vmin;
+    height: 60vmin;
   }
 }

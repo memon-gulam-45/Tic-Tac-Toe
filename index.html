@@ -9,14 +9,14 @@
   </head>
   <body class="gbg">
     <div class="msg-container hide">
-      <div class="msg">
-        <p id="msg">Winner</p>
+      <div id="msg">
+        <p class="msg">Winner</p>
         <button class="btn" href="#players" id="new-btn">New Game</button>
       </div>
     </div>
 
-    <div id="main-container" class="">
-      <h1 class="heading container">Tic Tac Toe</h1>
+    <div class="main-container">
+      <h1 class="heading">Tic Tac Toe</h1>
 
       <div id="name-container">
         <form class="players" id="players" action="#">
@@ -26,14 +26,14 @@
             type="text"
             name="player1"
             id="player1"
-            placeholder="Enter The Name Of Player 1"
+            placeholder="Player 1"
             required
           />
           <input
             type="text"
             name="player2"
             id="player2"
-            placeholder="Enter The Name Of Player 2"
+            placeholder="Player 2"
             required
           />
           <button type="submit" id="start-btn" class="btn">
@@ -43,7 +43,10 @@
       </div>
 
       <main>
-        <div class="container">
+        <div class="hide" id="turn-indicator">
+          Turn: <span id="turn-name"></span> (<span id="turn-symbol"></span>)
+        </div>
+        <div class="container hide">
           <div class="game">
             <button class="box"></button>
             <button class="box"></button>

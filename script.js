@@ -1,14 +1,15 @@
 let players = document.querySelector(".players");
 let startBtn = document.querySelector("#start-btn");
 
-let mainContainer = document.querySelector("#main-container");
-let container = document.querySelector(".container");
+let mainContainer = document.querySelector(".main-container");
+let turnIndicator = document.querySelector("#turn-indicator");
+let container = document.querySelector("main .container");
 let boxes = document.querySelectorAll(".box");
 let resetBtn = document.querySelector("#reset-btn");
 
 let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector(".msg-container");
-let msg = document.querySelector("#msg");
+let msg = document.querySelector(".msg");
 
 let turnO = true;
 
@@ -17,6 +18,13 @@ let storeName = () => {
   player1 = document.querySelector("#player1").value;
   player2 = document.querySelector("#player2").value;
 };
+
+function updateTurnIndicator() {
+  const name = turnO ? player1 || "Player 1" : player2 || "Player 2";
+  const symbol = turnO ? "O" : "X";
+  document.getElementById("turn-name").innerText = name;
+  document.getElementById("turn-symbol").innerText = symbol;
+}
 
 const winPatterns = [
   [0, 1, 2],
@@ -36,20 +44,26 @@ const resetGame = () => {
   mainContainer.classList.remove("hide");
   container.classList.remove("hide");
   resetBtn.classList.remove("hide");
+  updateTurnIndicator();
 };
 
 players.addEventListener("submit", (e) => {
   e.preventDefault();
   storeName();
 
-  msgContainer.classList.add("hide");
+  players.classList.add("hide");
+
   container.classList.remove("hide");
   resetBtn.classList.remove("hide");
-  players.classList.add("hide");
+
+  msgContainer.classList.add("hide");
+  mainContainer.classList.remove("hide");
+  turnIndicator.classList.remove("hide");
 
   console.log(player1);
   console.log(player2);
 
+  updateTurnIndicator();
   players.reset();
 });
 
@@ -67,6 +81,7 @@ boxes.forEach((box) => {
     box.disabled = true;
 
     checkWinner();
+    updateTurnIndicator();
   });
 });
 
@@ -84,15 +99,15 @@ const enableBoxes = () => {
 };
 
 const showWinner = (winner) => {
-  msg.className = "";
   msg.innerHTML = `🎉 Congratulations, ${
     winner === "O" ? player1 : player2
   } won!`;
   msg.classList.add("winner-text");
 
   msgContainer.classList.remove("hide");
-  container.classList.add("hide");
-  resetBtn.classList.add("hide");
+
+  container.classList.add("add");
+  resetBtn.classList.add("add");
   mainContainer.classList.add("hide");
 
   disableBoxes();
@@ -137,6 +152,8 @@ const checkWinner = () => {
 
 newGameBtn.addEventListener("click", () => {
   msgContainer.classList.add("hide");
+  turnIndicator.classList.add("hide");
+  mainContainer.classList.remove("hide");
   players.classList.remove("hide");
   container.classList.add("hide");
   resetBtn.classList.add("hide");

@@ -1,6 +1,7 @@
 let players = document.querySelector(".players");
 let startBtn = document.querySelector("#start-btn");
 
+let mainContainer = document.querySelector("#main-container");
 let container = document.querySelector(".container");
 let boxes = document.querySelectorAll(".box");
 let resetBtn = document.querySelector("#reset-btn");
@@ -32,18 +33,24 @@ const resetGame = () => {
   turnO = true;
   enableBoxes();
   msgContainer.classList.add("hide");
+  mainContainer.classList.remove("hide");
+  container.classList.remove("hide");
+  resetBtn.classList.remove("hide");
 };
 
 players.addEventListener("submit", (e) => {
   e.preventDefault();
   storeName();
 
+  msgContainer.classList.add("hide");
   container.classList.remove("hide");
   resetBtn.classList.remove("hide");
   players.classList.add("hide");
 
   console.log(player1);
   console.log(player2);
+
+  players.reset();
 });
 
 boxes.forEach((box) => {
@@ -77,12 +84,28 @@ const enableBoxes = () => {
 };
 
 const showWinner = (winner) => {
-  if (winner === "O") {
-    msg.innerHTML = `Congratulations, ${player1} : O Won`;
-  } else {
-    msg.innerHTML = `Congratulations, ${player2} : X Won`;
-  }
+  msg.className = "";
+  msg.innerHTML = `🎉 Congratulations, ${
+    winner === "O" ? player1 : player2
+  } won!`;
+  msg.classList.add("winner-text");
+
   msgContainer.classList.remove("hide");
+  container.classList.add("hide");
+  resetBtn.classList.add("hide");
+  mainContainer.classList.add("hide");
+
+  disableBoxes();
+};
+
+const showDraw = () => {
+  msg.innerText = "😅 It's Draw!";
+  msgContainer.classList.remove("hide");
+
+  container.classList.add("add");
+  resetBtn.classList.add("add");
+  mainContainer.classList.add("hide");
+
   disableBoxes();
 };
 
@@ -95,17 +118,29 @@ const checkWinner = () => {
     if (pos1Val != "" && pos2Val != "" && pos3Val != "") {
       if (pos1Val === pos2Val && pos2Val === pos3Val) {
         showWinner(pos1Val);
+        return;
       }
     }
+  }
+
+  let filledBoxes = 0;
+  boxes.forEach((box) => {
+    if (box.innerText !== "") {
+      filledBoxes++;
+    }
+  });
+
+  if (filledBoxes === 9) {
+    showDraw();
   }
 };
 
 newGameBtn.addEventListener("click", () => {
-  resetGame();
   msgContainer.classList.add("hide");
+  players.classList.remove("hide");
   container.classList.add("hide");
   resetBtn.classList.add("hide");
-  players.classList.remove("hide");
+  enableBoxes();
 });
 
 resetBtn.addEventListener("click", resetGame);

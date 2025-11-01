@@ -4,57 +4,62 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic Tac Toe</title>
-    <link rel="icon" type="image/png" href="TicTacToe.png" />
+    <link rel="icon" type="image/png" href="Image/TicTacToe.png" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="gbg">
     <div class="msg-container hide">
-      <p id="msg">Winner</p>
-      <button class="btn" href="#players" id="new-btn">New Game</button>
+      <div class="msg">
+        <p id="msg">Winner</p>
+        <button class="btn" href="#players" id="new-btn">New Game</button>
+      </div>
     </div>
 
-    <h1 class="heading">Tic Tac Toe</h1>
+    <div id="main-container" class="">
+      <h1 class="heading container">Tic Tac Toe</h1>
 
-    <form class="players" id="players" action="#">
-      <h2 class="name">Player Names</h2>
-      <br /><br />
-      <label for="player1">
-        <input
-          type="text"
-          name="player1"
-          id="player1"
-          placeholder="Enter The Name Of Player 1"
-          required
-        /> </label
-      ><br />
-      <label for="player2">
-        <input
-          type="text"
-          name="player2"
-          id="player2"
-          placeholder="Enter The Name Of Player 2"
-          required
-        /> </label
-      ><br /><br />
-      <button type="submit" id="start-btn" class="btn">Start The Game</button>
-    </form>
+      <div id="name-container">
+        <form class="players" id="players" action="#">
+          <h2 class="name">Player Names</h2>
 
-    <main>
-      <div class="container hide">
-        <div class="game">
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-        </div>
+          <input
+            type="text"
+            name="player1"
+            id="player1"
+            placeholder="Enter The Name Of Player 1"
+            required
+          />
+          <input
+            type="text"
+            name="player2"
+            id="player2"
+            placeholder="Enter The Name Of Player 2"
+            required
+          />
+          <button type="submit" id="start-btn" class="btn">
+            Start The Game
+          </button>
+        </form>
       </div>
-      <button class="btn hide" id="reset-btn">Reset Game</button>
-    </main>
+
+      <main>
+        <div class="container">
+          <div class="game">
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+          </div>
+        </div>
+        <button class="btn hide" id="reset-btn">Reset Game</button>
+      </main>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>

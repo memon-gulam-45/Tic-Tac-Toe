@@ -164,7 +164,7 @@ button:hover {
   bottom: 10px;
 }
 
-.msg-container p {
+.msg-container > p {
   font-size: 6vmin;
   margin: 3rem;
 }
@@ -174,21 +174,87 @@ button:hover {
   width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 #msg {
-  height: 80vh;
-  width: 60vw;
+  height: 90%;
+  width: 60%;
   background-color: rgba(222, 217, 217, 0.171);
   border-radius: 2rem;
   box-shadow: 0 0 20px black;
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
+
+/* Scoreboard */
+#scoreboard {
+  width: 50%;
+  height: 50%;
+  padding: 5px;
+
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+
+  transition: 0.3s ease;
+}
+
+#scoreboard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.22);
+}
+
+#scoreboard > p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+#scoreboard strong {
+  font-weight: 700;
+  color: #ffe66d; /* Highlight Player Names */
+}
+
+/* Title */
+#scoreboard-title {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 8px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* Fully responsive */
+@media (max-width: 480px) {
+  #scoreboard {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  #scoreboard p {
+    font-size: 0.95rem;
+  }
+
+  #scoreboard-title {
+    font-size: 1.1rem;
+  }
+}
+
 .hide {
   display: none;
 }
@@ -270,12 +336,12 @@ button:hover {
 
   .players input {
     width: 45vw;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   #turn-indicator {
-    font-size: 1.4rem;
-    bottom: 20px;
+    font-size: 1.3rem;
+    bottom: 35px;
   }
   .game {
     height: 60vmin;

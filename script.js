@@ -13,6 +13,14 @@ let msg = document.querySelector(".msg");
 
 let turnO = true;
 
+//ScoreBoard Var
+let scoreBoard = document.querySelector("#scoreboard");
+let p1_name = document.querySelector("#p1-name-display");
+let p2_name = document.querySelector("#p2-name-display");
+let p1_score = document.querySelector("#p1-score");
+let p2_score = document.querySelector("#p2-score");
+let draw_score = document.querySelector("#draw-score");
+
 let player1, player2;
 let storeName = () => {
   player1 = document.querySelector("#player1").value;
@@ -63,6 +71,7 @@ players.addEventListener("submit", (e) => {
   console.log(player1);
   console.log(player2);
 
+  showScoreBoard();
   updateTurnIndicator();
   players.reset();
 });
@@ -99,9 +108,16 @@ const enableBoxes = () => {
 };
 
 const showWinner = (winner) => {
-  msg.innerHTML = `🎉 Congratulations, ${
-    winner === "O" ? player1 : player2
-  } won!`;
+  let winPlayer;
+  if (winner === "O") {
+    winPlayer = player1;
+    p1_score.innerText = Number(p1_score.innerText) + 1;
+  } else {
+    winPlayer = player2;
+    p2_score.innerText = Number(p2_score.innerText) + 1;
+  }
+
+  msg.innerHTML = `🎉 Congratulations, ${winPlayer} won!`;
   msg.classList.add("winner-text");
 
   msgContainer.classList.remove("hide");
@@ -115,6 +131,7 @@ const showWinner = (winner) => {
 
 const showDraw = () => {
   msg.innerText = "😅 It's Draw!";
+  draw_score.innerText = Number(draw_score.innerText) + 1;
   msgContainer.classList.remove("hide");
 
   container.classList.add("add");
@@ -161,3 +178,9 @@ newGameBtn.addEventListener("click", () => {
 });
 
 resetBtn.addEventListener("click", resetGame);
+
+//ScoreBoard
+function showScoreBoard() {
+  p1_name.innerText = player1;
+  p2_name.innerText = player2;
+}

@@ -8,9 +8,11 @@ let boxes = document.querySelectorAll(".box");
 let resetBtn = document.querySelector("#reset-btn");
 
 let newGameBtn = document.querySelector("#new-btn");
+let playAgainBtn = document.querySelector("#play-again");
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector(".msg");
 
+let winPlayer = null;
 let turnO = true;
 
 //ScoreBoard Var
@@ -25,6 +27,7 @@ let player1, player2;
 let storeName = () => {
   player1 = document.querySelector("#player1").value;
   player2 = document.querySelector("#player2").value;
+  storeScoreBoardNames();
 };
 
 function updateTurnIndicator() {
@@ -45,19 +48,10 @@ const winPatterns = [
   [6, 7, 8],
 ];
 
-const resetGame = () => {
-  turnO = true;
-  enableBoxes();
-  msgContainer.classList.add("hide");
-  mainContainer.classList.remove("hide");
-  container.classList.remove("hide");
-  resetBtn.classList.remove("hide");
-  updateTurnIndicator();
-};
-
 players.addEventListener("submit", (e) => {
   e.preventDefault();
   storeName();
+  storeScoreBoardNames();
 
   players.classList.add("hide");
 
@@ -71,7 +65,6 @@ players.addEventListener("submit", (e) => {
   console.log(player1);
   console.log(player2);
 
-  showScoreBoard();
   updateTurnIndicator();
   players.reset();
 });
@@ -108,7 +101,6 @@ const enableBoxes = () => {
 };
 
 const showWinner = (winner) => {
-  let winPlayer;
   if (winner === "O") {
     winPlayer = player1;
     p1_score.innerText = Number(p1_score.innerText) + 1;
@@ -117,7 +109,7 @@ const showWinner = (winner) => {
     p2_score.innerText = Number(p2_score.innerText) + 1;
   }
 
-  msg.innerHTML = `🎉 Congratulations, ${winPlayer} won!`;
+  msg.innerHTML = `Congratulations, ${winPlayer} won!`;
   msg.classList.add("winner-text");
 
   msgContainer.classList.remove("hide");
@@ -130,7 +122,7 @@ const showWinner = (winner) => {
 };
 
 const showDraw = () => {
-  msg.innerText = "😅 It's Draw!";
+  msg.innerText = "It's Draw!";
   draw_score.innerText = Number(draw_score.innerText) + 1;
   msgContainer.classList.remove("hide");
 
@@ -167,7 +159,23 @@ const checkWinner = () => {
   }
 };
 
+const resetGame = () => {
+  winPlayer = null;
+  turnO = true;
+  enableBoxes();
+  msgContainer.classList.add("hide");
+  mainContainer.classList.remove("hide");
+  container.classList.remove("hide");
+  resetBtn.classList.remove("hide");
+  updateTurnIndicator();
+};
+
 newGameBtn.addEventListener("click", () => {
+  p1_score.innerText = 0;
+  p2_score.innerText = 0;
+  draw_score.innerText = 0;
+  turnO = true;
+  winPlayer = null;
   msgContainer.classList.add("hide");
   turnIndicator.classList.add("hide");
   mainContainer.classList.remove("hide");
@@ -175,12 +183,14 @@ newGameBtn.addEventListener("click", () => {
   container.classList.add("hide");
   resetBtn.classList.add("hide");
   enableBoxes();
+  updateTurnIndicator();
 });
 
 resetBtn.addEventListener("click", resetGame);
+playAgainBtn.addEventListener("click", resetGame);
 
 //ScoreBoard
-function showScoreBoard() {
+function storeScoreBoardNames() {
   p1_name.innerText = player1;
   p2_name.innerText = player2;
 }

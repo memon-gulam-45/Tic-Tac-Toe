@@ -208,7 +208,6 @@ function startCountdown(type, seconds = 3) {
 
   overlay.classList.remove("hide");
 
-  // disable buttons to avoid spam
   resetBtn.disabled = true;
   newGameBtn.disabled = true;
   playAgainBtn.disabled = true;
@@ -224,12 +223,10 @@ function startCountdown(type, seconds = 3) {
       clearInterval(interval);
       overlay.classList.add("hide");
 
-      // enable buttons again
       resetBtn.disabled = false;
       newGameBtn.disabled = false;
       playAgainBtn.disabled = false;
 
-      // run correct action
       if (type === "start") doStart();
       if (type === "playAgain") doPlayAgain();
       if (type === "newGame") doNewGame();

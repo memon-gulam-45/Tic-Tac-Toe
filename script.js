@@ -50,6 +50,10 @@ const winPatterns = [
 
 players.addEventListener("submit", (e) => {
   e.preventDefault();
+  startCountdown("start");
+});
+
+function doStart() {
   storeName();
   storeScoreBoardNames();
 
@@ -67,7 +71,7 @@ players.addEventListener("submit", (e) => {
 
   updateTurnIndicator();
   players.reset();
-});
+}
 
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
@@ -103,10 +107,10 @@ const enableBoxes = () => {
 const showWinner = (winner) => {
   if (winner === "O") {
     winPlayer = player1;
-    p1_score.innerText = Number(p1_score.innerText) + 1;
+    p1_score.innerText = +p1_score.innerText + 1;
   } else {
     winPlayer = player2;
-    p2_score.innerText = Number(p2_score.innerText) + 1;
+    p2_score.innerText = +p2_score.innerText + 1;
   }
 
   msg.innerHTML = `Congratulations, ${winPlayer} won!`;
@@ -114,8 +118,8 @@ const showWinner = (winner) => {
 
   msgContainer.classList.remove("hide");
 
-  container.classList.add("add");
-  resetBtn.classList.add("add");
+  container.classList.add("hide");
+  resetBtn.classList.add("hide");
   mainContainer.classList.add("hide");
 
   disableBoxes();
@@ -159,7 +163,7 @@ const checkWinner = () => {
   }
 };
 
-const resetGame = () => {
+function doReset() {
   winPlayer = null;
   turnO = true;
   enableBoxes();
@@ -168,9 +172,9 @@ const resetGame = () => {
   container.classList.remove("hide");
   resetBtn.classList.remove("hide");
   updateTurnIndicator();
-};
+}
 
-newGameBtn.addEventListener("click", () => {
+function doNewGame() {
   p1_score.innerText = 0;
   p2_score.innerText = 0;
   draw_score.innerText = 0;
@@ -184,10 +188,66 @@ newGameBtn.addEventListener("click", () => {
   resetBtn.classList.add("hide");
   enableBoxes();
   updateTurnIndicator();
+}
+
+function doPlayAgain() {
+  turnO = true;
+  enableBoxes();
+  msgContainer.classList.add("hide");
+  mainContainer.classList.remove("hide");
+  container.classList.remove("hide");
+  resetBtn.classList.remove("hide");
+  updateTurnIndicator();
+}
+
+function startCountdown(type, seconds = 3) {
+  let counter = seconds;
+
+  const overlay = document.getElementById("countdown-overlay");
+  const number = document.getElementById("countdown-number");
+
+  overlay.classList.remove("hide");
+
+  // disable buttons to avoid spam
+  resetBtn.disabled = true;
+  newGameBtn.disabled = true;
+  playAgainBtn.disabled = true;
+
+  number.innerText = counter;
+
+  const interval = setInterval(() => {
+    counter--;
+
+    if (counter > 0) {
+      number.innerText = counter;
+    } else {
+      clearInterval(interval);
+      overlay.classList.add("hide");
+
+      // enable buttons again
+      resetBtn.disabled = false;
+      newGameBtn.disabled = false;
+      playAgainBtn.disabled = false;
+
+      // run correct action
+      if (type === "start") doStart();
+      if (type === "playAgain") doPlayAgain();
+      if (type === "newGame") doNewGame();
+    }
+  }, 1000);
+}
+
+newGameBtn.addEventListener("click", () => {
+  startCountdown("newGame");
 });
 
-resetBtn.addEventListener("click", resetGame);
-playAgainBtn.addEventListener("click", resetGame);
+resetBtn.addEventListener("click", () => {
+  doReset();
+});
+
+playAgainBtn.addEventListener("click", () => {
+  startCountdown("playAgain");
+});
 
 //ScoreBoard
 function storeScoreBoardNames() {

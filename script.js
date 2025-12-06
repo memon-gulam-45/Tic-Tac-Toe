@@ -6,6 +6,7 @@ let turnIndicator = document.querySelector("#turn-indicator");
 let container = document.querySelector("main .container");
 let boxes = document.querySelectorAll(".box");
 let resetBtn = document.querySelector("#reset-btn");
+const line = document.querySelector("#win-line");
 
 let newGameBtn = document.querySelector("#new-btn");
 let playAgainBtn = document.querySelector("#play-again");
@@ -62,10 +63,48 @@ function highlightWinner(pattern) {
   pattern.forEach((index) => {
     boxes[index].classList.add("win-pattern");
   });
-
+  showWinLine(pattern);
   boxes.forEach((box, idx) => {
     if (!pattern.includes(idx)) box.classList.add("fade-box");
   });
+}
+
+function showWinLine() {
+  line.classList.remove("hide");
+
+  switch (pattern.toString()) {
+    case "0,1,2":
+      line.style.transform = "translate(0%, -50%) rotate(0deg)";
+      break;
+
+    case "3,4,5":
+      line.style.transform = "translate(-50%, 0%) rotate(0deg)";
+      break;
+
+    case "6,7,8":
+      line.style.transform = "translate(-50%, 150%) rotate(0deg)";
+      break;
+
+    case "0,3,6":
+      line.style.transform = "translate(-150%, -50%) rotate(90deg)";
+      break;
+
+    case "1,4,7":
+      line.style.transform = "translate(0%, -50%) rotate(90deg)";
+      break;
+
+    case "2,5,8":
+      line.style.transform = "translate(150%, -50%) rotate(90deg)";
+      break;
+
+    case "0,4,8":
+      line.style.transform = "translate(-50%, -50%) rotate(45deg)";
+      break;
+
+    case "2,4,6":
+      line.style.transform = "translate(-50%, -50%) rotate(-45deg)";
+      break;
+  }
 }
 
 players.addEventListener("submit", (e) => {
@@ -200,6 +239,9 @@ function doReset() {
   mainContainer.classList.remove("hide");
   container.classList.remove("hide");
   resetBtn.classList.remove("hide");
+  line.classList.add("hide");
+  line.style.transform = "";
+
   updateTurnIndicator();
   updateTurnUI();
 }
@@ -216,6 +258,8 @@ function doNewGame() {
   players.classList.remove("hide");
   container.classList.add("hide");
   resetBtn.classList.add("hide");
+  line.classList.add("hide");
+  line.style.transform = "";
   enableBoxes();
   updateTurnIndicator();
   updateTurnUI();
@@ -228,6 +272,8 @@ function doPlayAgain() {
   mainContainer.classList.remove("hide");
   container.classList.remove("hide");
   resetBtn.classList.remove("hide");
+  line.classList.add("hide");
+  line.style.transform = "";
   updateTurnIndicator();
   updateTurnUI();
 }

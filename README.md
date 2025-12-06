@@ -9,7 +9,6 @@ A vibrant and responsive Tic Tac Toe game built using HTML, CSS, and JavaScript.
 👉 [Click here to play Tic Tac Toe](https://memon-gulam-45.github.io/Tic-Tac-Toe/)  
 _(No download needed — play directly in your browser!)_
 
-
 ---
 
 ## How to Play
@@ -31,6 +30,9 @@ _(No download needed — play directly in your browser!)_
 - Smooth hover and click effects
 - Reset & New Game functionality
 - Winner announcement with celebration screen
+- **Scoreboard** to track wins/losses
+- **Scoreboard** to track wins/losses
+- **Animated Turn Highlight**
 
 ---
 
@@ -47,14 +49,10 @@ Planned upgrades to enhance user experience:
 - **Game Timer** and **Restart Countdown**
 - **Dark Mode Toggle**
 - **Single Player Mode** with AI
-- **Animated Turn Highlight** using gradient border/shadow
-- **Scoreboard** to track wins/losses
 
 ---
 
 ## Preview
-
-
 
 ---
 

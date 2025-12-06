@@ -37,6 +37,16 @@ function updateTurnIndicator() {
   document.getElementById("turn-symbol").innerText = symbol;
 }
 
+function updateTurnUI() {
+  turnIndicator.classList.remove("turn-x", "turn-o");
+
+  if (turnO) {
+    turnIndicator.classList.add("turn-o");
+  } else {
+    turnIndicator.classList.add("turn-x");
+  }
+}
+
 const winPatterns = [
   [0, 1, 2],
   [0, 3, 6],
@@ -47,6 +57,16 @@ const winPatterns = [
   [3, 4, 5],
   [6, 7, 8],
 ];
+
+function highlightWinner(pattern) {
+  pattern.forEach((index) => {
+    boxes[index].classList.add("win-pattern");
+  });
+
+  boxes.forEach((box, idx) => {
+    if (!pattern.includes(idx)) box.classList.add("fade-box");
+  });
+}
 
 players.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -70,6 +90,7 @@ function doStart() {
   console.log(player2);
 
   updateTurnIndicator();
+  updateTurnUI();
   players.reset();
 }
 
@@ -88,6 +109,7 @@ boxes.forEach((box) => {
 
     checkWinner();
     updateTurnIndicator();
+    updateTurnUI();
   });
 });
 
@@ -101,6 +123,8 @@ const enableBoxes = () => {
   for (let box of boxes) {
     box.disabled = false;
     box.innerHTML = "";
+    box.classList.remove("win-pattern");
+    box.classList.remove("fade-box");
   }
 };
 
@@ -145,7 +169,12 @@ const checkWinner = () => {
 
     if (pos1Val != "" && pos2Val != "" && pos3Val != "") {
       if (pos1Val === pos2Val && pos2Val === pos3Val) {
-        showWinner(pos1Val);
+        highlightWinner(pattern);
+        disableBoxes();
+
+        setTimeout(() => {
+          showWinner(pos1Val);
+        }, 2000);
         return;
       }
     }
@@ -172,6 +201,7 @@ function doReset() {
   container.classList.remove("hide");
   resetBtn.classList.remove("hide");
   updateTurnIndicator();
+  updateTurnUI();
 }
 
 function doNewGame() {
@@ -188,6 +218,7 @@ function doNewGame() {
   resetBtn.classList.add("hide");
   enableBoxes();
   updateTurnIndicator();
+  updateTurnUI();
 }
 
 function doPlayAgain() {
@@ -198,6 +229,7 @@ function doPlayAgain() {
   container.classList.remove("hide");
   resetBtn.classList.remove("hide");
   updateTurnIndicator();
+  updateTurnUI();
 }
 
 function startCountdown(type, seconds = 3) {

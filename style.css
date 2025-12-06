@@ -88,7 +88,19 @@ body {
   position: relative;
   bottom: 50px;
   color: white;
+  transition: all 0.4s ease;
 }
+.turn-x {
+  color: #ffe66d;
+  transform: translateY(-3px);
+  filter: drop-shadow(0 0 8px #ffe66d);
+}
+.turn-o {
+  color: #6dfcff;
+  transform: translateY(3px);
+  filter: drop-shadow(0 0 8px #6dfcff);
+}
+
 .container {
   height: 60vh;
   display: flex;
@@ -121,6 +133,7 @@ body {
   border-radius: 0.8rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
   transition: transform 0.2s ease, background-color 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .box:hover {
   transform: scale(1.04);
@@ -132,6 +145,7 @@ body {
 
 button {
   transition: all 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 button:hover {
   transform: translateY(-3px);
@@ -291,6 +305,29 @@ button:hover {
     transform: scale(1);
     opacity: 1;
   }
+}
+
+/* Winning Celebration */
+.win-pattern {
+  background: linear-gradient(45deg, #ff4d4d, #ff0000);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 0 12px #ff6b6b, 0 0 24px #ff0000;
+  animation: winPulse 0.8s infinite alternate;
+  transform: scale(1.1);
+}
+@keyframes winPulse {
+  0% {
+    box-shadow: 0 0 10px #ff6b6b, 0 0 20px #ff0000;
+  }
+  100% {
+    box-shadow: 0 0 16px #ff0000, 0 0 32px #ff0000;
+  }
+}
+.fade-box {
+  opacity: 0.4;
+  pointer-events: none;
+  filter: blur(0.6px);
 }
 
 @media (max-width: 480px) {

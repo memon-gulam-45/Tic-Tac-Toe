@@ -287,37 +287,38 @@ function startCountdown(type, seconds = 3) {
   playAgainBtn.disabled = true;
 
   number.innerText = counter;
+  setTimeout(() => {
+    const interval = setInterval(() => {
+      counter--;
 
-  const interval = setInterval(() => {
-    counter--;
+      countSound.currentTime = 0;
+      countSound.play();
 
-    countSound.currentTime = 0;
-    countSound.play();
+      if (counter > 0) {
+        number.innerText = counter;
+        if (counter == 3) {
+          countdownBeep.playbackRate = 1.0;
+        }
+        if (counter == 2) {
+          countdownBeep.playbackRate = 1.2;
+        }
+        if (counter == 1) {
+          countdownBeep.playbackRate = 1.4;
+        }
+      } else {
+        clearInterval(interval);
+        overlay.classList.add("hide");
 
-    if (counter > 0) {
-      number.innerText = counter;
-      if (counter == 3) {
-        countdownBeep.playbackRate = 1.0;
+        resetBtn.disabled = false;
+        newGameBtn.disabled = false;
+        playAgainBtn.disabled = false;
+
+        if (type === "start") doStart();
+        if (type === "playAgain") doPlayAgain();
+        if (type === "newGame") doNewGame();
       }
-      if (counter == 2) {
-        countdownBeep.playbackRate = 1.2;
-      }
-      if (counter == 1) {
-        countdownBeep.playbackRate = 1.4;
-      }
-    } else {
-      clearInterval(interval);
-      overlay.classList.add("hide");
-
-      resetBtn.disabled = false;
-      newGameBtn.disabled = false;
-      playAgainBtn.disabled = false;
-
-      if (type === "start") doStart();
-      if (type === "playAgain") doPlayAgain();
-      if (type === "newGame") doNewGame();
-    }
-  }, 1000);
+    }, 1000);
+  }, 100);
 }
 
 newGameBtn.addEventListener("click", () => {

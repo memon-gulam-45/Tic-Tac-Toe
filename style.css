@@ -68,6 +68,7 @@ body {
 
 .players input {
   width: 40vw;
+  color: #fff;
   background: transparent;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
   font-size: 1.2rem;
@@ -76,8 +77,17 @@ body {
   padding: 20px;
 }
 .players input::placeholder {
-  color: lightgray;
+  color: #ccc;
 }
+.players input:-webkit-autofill,
+.players input:-webkit-autofill:hover,
+.players input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  -webkit-text-fill-color: #fff;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .players button {
   margin-bottom: 0.5rem;
   font-size: 1.2rem;

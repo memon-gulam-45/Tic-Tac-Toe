@@ -329,19 +329,6 @@ button:hover {
   pointer-events: none;
   filter: blur(0.6px);
 }
-#win-line {
-  position: absolute;
-  width: 260px;
-  height: 6px;
-  background: linear-gradient(90deg, #ffffff, #e6e6e6);
-  box-shadow: 0 0 12px #ffffff, 0 0 24px #ffffff;
-  border-radius: 6px;
-  top: 50%;
-  left: 50%;
-  transform-origin: center;
-  transition: all 0.4s ease;
-  z-index: 20;
-}
 
 @media (max-width: 480px) {
   .heading {

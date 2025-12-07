@@ -6,8 +6,6 @@ let turnIndicator = document.querySelector("#turn-indicator");
 let container = document.querySelector("main .container");
 let boxes = document.querySelectorAll(".box");
 let resetBtn = document.querySelector("#reset-btn");
-const line = document.querySelector("#win-line");
-
 let newGameBtn = document.querySelector("#new-btn");
 let playAgainBtn = document.querySelector("#play-again");
 let msgContainer = document.querySelector(".msg-container");
@@ -23,6 +21,30 @@ let p2_name = document.querySelector("#p2-name-display");
 let p1_score = document.querySelector("#p1-score");
 let p2_score = document.querySelector("#p2-score");
 let draw_score = document.querySelector("#draw-score");
+
+const clickSound = new Audio("sounds/click.mp3");
+clickSound.preload = "auto";
+clickSound.load();
+
+const countSound = new Audio("sounds/count.mp3");
+countSound.preload = "auto";
+countSound.load();
+
+const soundO = new Audio("sounds/turnO.mp3");
+soundO.preload = "auto";
+soundO.load();
+
+const soundX = new Audio("sounds/turnX.mp3");
+soundX.preload = "auto";
+soundX.load();
+
+const winSound = new Audio("sounds/win.mp3");
+winSound.preload = "auto";
+winSound.load();
+
+const drawSound = new Audio("sounds/draw.mp3");
+drawSound.preload = "auto";
+drawSound.load();
 
 let player1, player2;
 let storeName = () => {
@@ -63,48 +85,9 @@ function highlightWinner(pattern) {
   pattern.forEach((index) => {
     boxes[index].classList.add("win-pattern");
   });
-  showWinLine(pattern);
   boxes.forEach((box, idx) => {
     if (!pattern.includes(idx)) box.classList.add("fade-box");
   });
-}
-
-function showWinLine() {
-  line.classList.remove("hide");
-
-  switch (pattern.toString()) {
-    case "0,1,2":
-      line.style.transform = "translate(0%, -50%) rotate(0deg)";
-      break;
-
-    case "3,4,5":
-      line.style.transform = "translate(-50%, 0%) rotate(0deg)";
-      break;
-
-    case "6,7,8":
-      line.style.transform = "translate(-50%, 150%) rotate(0deg)";
-      break;
-
-    case "0,3,6":
-      line.style.transform = "translate(-150%, -50%) rotate(90deg)";
-      break;
-
-    case "1,4,7":
-      line.style.transform = "translate(0%, -50%) rotate(90deg)";
-      break;
-
-    case "2,5,8":
-      line.style.transform = "translate(150%, -50%) rotate(90deg)";
-      break;
-
-    case "0,4,8":
-      line.style.transform = "translate(-50%, -50%) rotate(45deg)";
-      break;
-
-    case "2,4,6":
-      line.style.transform = "translate(-50%, -50%) rotate(-45deg)";
-      break;
-  }
 }
 
 players.addEventListener("submit", (e) => {
@@ -135,14 +118,16 @@ function doStart() {
 
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
-    console.log("Box Clicked");
-
     if (turnO) {
       box.innerText = "O";
       turnO = false;
+      soundO.currentTime = 0;
+      soundO.play();
     } else {
       box.innerText = "X";
       turnO = true;
+      soundX.currentTime = 0;
+      soundX.play();
     }
     box.disabled = true;
 
@@ -189,6 +174,9 @@ const showWinner = (winner) => {
 };
 
 const showDraw = () => {
+  drawSound.currentTime = 0;
+  drawSound.play();
+
   msg.innerText = "It's Draw!";
   draw_score.innerText = Number(draw_score.innerText) + 1;
   msgContainer.classList.remove("hide");
@@ -213,7 +201,9 @@ const checkWinner = () => {
 
         setTimeout(() => {
           showWinner(pos1Val);
-        }, 2000);
+          winSound.currentTime = 0;
+          winSound.play();
+        }, 1200);
         return;
       }
     }
@@ -231,7 +221,16 @@ const checkWinner = () => {
   }
 };
 
+function stopAllSounds() {
+  winSound.pause();
+  winSound.currentTime = 0;
+
+  drawSound.pause();
+  drawSound.currentTime = 0;
+}
+
 function doReset() {
+  clickSound.play();
   winPlayer = null;
   turnO = true;
   enableBoxes();
@@ -239,8 +238,6 @@ function doReset() {
   mainContainer.classList.remove("hide");
   container.classList.remove("hide");
   resetBtn.classList.remove("hide");
-  line.classList.add("hide");
-  line.style.transform = "";
 
   updateTurnIndicator();
   updateTurnUI();
@@ -258,8 +255,7 @@ function doNewGame() {
   players.classList.remove("hide");
   container.classList.add("hide");
   resetBtn.classList.add("hide");
-  line.classList.add("hide");
-  line.style.transform = "";
+
   enableBoxes();
   updateTurnIndicator();
   updateTurnUI();
@@ -272,13 +268,13 @@ function doPlayAgain() {
   mainContainer.classList.remove("hide");
   container.classList.remove("hide");
   resetBtn.classList.remove("hide");
-  line.classList.add("hide");
-  line.style.transform = "";
   updateTurnIndicator();
   updateTurnUI();
 }
 
 function startCountdown(type, seconds = 3) {
+  stopAllSounds();
+  clickSound.play();
   let counter = seconds;
 
   const overlay = document.getElementById("countdown-overlay");
@@ -295,8 +291,20 @@ function startCountdown(type, seconds = 3) {
   const interval = setInterval(() => {
     counter--;
 
+    countSound.currentTime = 0;
+    countSound.play();
+
     if (counter > 0) {
       number.innerText = counter;
+      if (counter == 3) {
+        countdownBeep.playbackRate = 1.0;
+      }
+      if (counter == 2) {
+        countdownBeep.playbackRate = 1.2;
+      }
+      if (counter == 1) {
+        countdownBeep.playbackRate = 1.4;
+      }
     } else {
       clearInterval(interval);
       overlay.classList.add("hide");

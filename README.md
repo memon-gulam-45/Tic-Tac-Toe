@@ -92,7 +92,7 @@ _No installation required — works directly in your browser._
 ## 📁 Folder Structure
 
 <pre>
-TIC TAC TOE
+NEON XO - TIC TAC TOE
 ├── .vscode
 ├── Image
 │   └── logo.png

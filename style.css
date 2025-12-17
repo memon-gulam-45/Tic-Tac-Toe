@@ -369,9 +369,9 @@ button:hover {
     bottom: 14px;
   }
   .game {
-    height: 70vmin;
+    height: 71vmin;
     width: 70vmin;
-    gap: 1.7vmin;
+    gap: 2vmin;
   }
 
   .box {

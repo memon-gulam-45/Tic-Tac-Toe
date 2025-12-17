@@ -338,3 +338,9 @@ function storeScoreBoardNames() {
   p1_name.innerText = player1;
   p2_name.innerText = player2;
 }
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js");
+  });
+}

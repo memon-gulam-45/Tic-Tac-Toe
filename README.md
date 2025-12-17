@@ -1,8 +1,8 @@
-# 🎮 NEON XO — Tic Tac Toe Game
+# 🎮 NEON XO — Tic Tac Toe Game (PWA)
 
-**NEON XO** is a modern, fully responsive Tic Tac Toe game built using **HTML, CSS, and Vanilla JavaScript**, featuring a neon-styled UI, glassmorphism design, animated interactions, and fun sound effects.
+**NEON XO** is a modern, fully responsive **Progressive Web App (PWA)** Tic Tac Toe game built using **HTML, CSS, and Vanilla JavaScript**, featuring a neon-styled UI, glassmorphism design, animated interactions, and fun sound effects.
 
-This project is designed as a **polished frontend game**, suitable for portfolios and real-world UI/UX demonstrations.
+This project is designed as a **polished frontend game**, suitable for portfolios, UI/UX showcases, and real-world web performance demonstrations.
 
 ---
 
@@ -11,7 +11,12 @@ This project is designed as a **polished frontend game**, suitable for portfolio
 👉 **Live Demo:**  
 https://memon-gulam-45.github.io/Tic-Tac-Toe/
 
-_No installation required — works directly in your browser._
+👉 **Install as App:**
+
+- Desktop: Click **Install App** from browser address bar
+- Mobile: Add to Home Screen (Chrome / Edge / Brave)
+
+_No app store required._
 
 ---
 
@@ -63,6 +68,40 @@ _No installation required — works directly in your browser._
 
 ---
 
+## 📱 Progressive Web App (PWA)
+
+NEON XO is fully PWA-enabled:
+
+- ✅ Installable on **desktop & mobile**
+- ✅ Works **offline** after first load
+- ✅ Fast reloads via caching
+- ✅ App-like fullscreen experience
+- ✅ All sounds playable in installed mode
+- ✅ Custom app icon & manifest configuration
+
+---
+
+## ⚡ Lighthouse Scores
+
+Achieved **near-perfect Lighthouse performance**:
+
+| Category       | Score |
+| -------------- | ----- |
+| Performance    | 96    |
+| Accessibility  | 100   |
+| Best Practices | 100   |
+| SEO            | 100   |
+
+Optimizations include:
+
+- Preloaded & preconnected Google Fonts (Poppins)
+- Optimized meta tags
+- Responsive images & icons
+- PWA manifest & service worker
+- Clean semantic HTML
+
+---
+
 ## 🧩 Controls Summary
 
 | Action     | Result                                     |
@@ -86,6 +125,10 @@ _No installation required — works directly in your browser._
   - Game state handling
   - Sound control
   - Countdown logic
+- **PWA**
+  - Web App Manifest
+  - Service Worker
+  - Offline caching
 
 ---
 
@@ -99,13 +142,15 @@ NEON XO - TIC TAC TOE
 ├── sounds
 │   ├── click.mp3
 │   ├── count.mp3
-│   ├── draw.mp3       
+│   ├── draw.mp3
 │   ├── turnO.mp3
 │   ├── turnX.mp3
-│   └── win.mp3 
+│   └── win.mp3
 ├── index.html
 ├── style.css
 ├── script.js
+├── manifest.json
+├── service-worker.js
 └── README.md
 </pre>
 
@@ -116,16 +161,17 @@ NEON XO - TIC TAC TOE
 ✅ Core game complete  
 ✅ Responsive UI finalized  
 ✅ Sound effects integrated  
-✅ Scoreboard implemented
+✅ Scoreboard implemented  
+✅ PWA enabled  
+✅ Lighthouse optimized
 
-This project is intentionally kept offline and simple to maintain clarity, performance, and clean architecture.
+This project is intentionally kept **simple, fast, and offline-capable**, focusing on **polish, performance, and UX** rather than unnecessary complexity.
 
 ---
 
 ## 👤 Author
 
-**Gulam Mohyudin Memon** <br>
-Diploma in Information Technology <br>
+**Gulam Mohyudin Memon**  
 _Full Stack Web Developer_
 
 ---

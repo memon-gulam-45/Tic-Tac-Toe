@@ -9,7 +9,7 @@ This project is designed as a **polished frontend game**, suitable for portfolio
 ## 🔗 Play Online
 
 👉 **Live Demo:**  
-https://memon-gulam-45.github.io/Tic-Tac-Toe/
+https://memon-gulam-45.github.io/Neon_XO---Tic_Tac_Toe/
 
 👉 **Install as App:**
 

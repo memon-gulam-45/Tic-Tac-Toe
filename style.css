@@ -342,7 +342,7 @@ button:hover {
 
 @media (max-width: 480px) {
   .heading {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-top: 6vh;
   }
 
@@ -372,12 +372,14 @@ button:hover {
     height: 71vmin;
     width: 70vmin;
     gap: 2vmin;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
   }
 
   .box {
-    height: 20vmin;
-    width: 20vmin;
+    height: 21vmin;
+    width: 21vmin;
     font-size: 9vmin;
+    border-radius: 0.6rem;
   }
 
   .btn {

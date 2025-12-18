@@ -3,8 +3,8 @@
   "short_name": "Neon XO",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0f2027",
-  "theme_color": "#0f2027",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "orientation": "portrait",
   "icons": [
     {
@@ -19,16 +19,16 @@
     }
   ],
   "screenshots": [
-  {
-    "src": "screenshots/desktop.png",
-    "sizes": "1920x1080",
-    "type": "image/png",
-    "form_factor": "wide"
-  },
-  {
-    "src": "screenshots/mobile.png",
-    "sizes": "382x661",
-    "type": "image/png"
-  }
-]
+    {
+      "src": "screenshots/desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshots/mobile.png",
+      "sizes": "382x661",
+      "type": "image/png"
+    }
+  ]
 }
